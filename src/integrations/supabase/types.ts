@@ -159,6 +159,7 @@ export type Database = {
       }
       schemes: {
         Row: {
+          article: string
           category: string
           created_at: string
           description: string
@@ -174,6 +175,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          article?: string
           category?: string
           created_at?: string
           description?: string
@@ -189,6 +191,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          article?: string
           category?: string
           created_at?: string
           description?: string

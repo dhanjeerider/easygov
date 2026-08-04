@@ -1,0 +1,1 @@
+ALTER TABLE public.schemes ADD COLUMN IF NOT EXISTS article text NOT NULL DEFAULT '';
