@@ -7,34 +7,31 @@ export function SiteHeader() {
   const { user, isAdmin } = useAuth();
 
   return (
-    <header className="sticky top-0 z-40 w-full px-4 pt-4">
-      <div className="glass-card mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
+    <header className="border-b border-border bg-background">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
         <Link to="/" className="flex items-center gap-2.5">
-          <span className="gradient-hero flex size-9 items-center justify-center rounded-xl text-primary-foreground shadow-sm">
-            <LayoutGrid className="size-4.5" />
+          <span className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+            <LayoutGrid className="size-4" />
           </span>
           <span className="leading-tight">
-            <span className="block text-base font-bold tracking-tight">Sarkari Setu</span>
-            <span className="block text-[11px] text-muted-foreground">योजना व सरकारी लिंक डायरेक्टरी</span>
+            <span className="block text-[15px] font-semibold tracking-tight">Sarkari Setu</span>
+            <span className="block text-[11px] text-muted-foreground">सरकारी योजना व लिंक</span>
           </span>
         </Link>
         <nav className="flex items-center gap-2">
           {isAdmin && (
-            <Button asChild variant="secondary" size="sm">
+            <Button asChild variant="outline" size="sm">
               <Link to="/admin">
                 <ShieldCheck className="size-4" /> Admin
               </Link>
             </Button>
           )}
           {!user && (
-            <Button asChild size="sm">
+            <Button asChild size="sm" variant="outline">
               <Link to="/auth">
                 <LogIn className="size-4" /> Login
               </Link>
             </Button>
-          )}
-          {user && !isAdmin && (
-            <span className="hidden text-xs text-muted-foreground sm:block">{user.email}</span>
           )}
         </nav>
       </div>
