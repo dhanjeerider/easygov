@@ -108,7 +108,12 @@ function AdminPage() {
     setSaving(true);
     const payload = {
       ...form,
-      slug: form.slug.trim().toLowerCase().replace(/\s+/g, "-"),
+      slug:
+        (form.slug || form.title_en)
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "") || `scheme-${Date.now()}`,
       description: form.description,
       official_url: form.official_url || null,
     };
@@ -264,15 +269,7 @@ function AdminPage() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label>Slug</Label>
-                  <Input
-                    required
-                    value={form.slug}
-                    onChange={(e) => setForm({ ...form, slug: e.target.value })}
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <Label>Category</Label>
+                  <Label>श्रेणी</Label>
                   <Input
                     required
                     value={form.category}
@@ -280,7 +277,7 @@ function AdminPage() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label>Icon</Label>
+                  <Label>आइकॉन</Label>
                   <select
                     value={form.icon}
                     onChange={(e) => setForm({ ...form, icon: e.target.value })}
@@ -293,17 +290,9 @@ function AdminPage() {
                     ))}
                   </select>
                 </div>
-                <div className="space-y-1.5">
-                  <Label>Sort order</Label>
-                  <Input
-                    type="number"
-                    value={form.sort_order}
-                    onChange={(e) => setForm({ ...form, sort_order: Number(e.target.value) })}
-                  />
-                </div>
               </div>
               <div className="space-y-1.5">
-                <Label>Official URL</Label>
+                <Label>ऑफिशियल वेबसाइट (optional)</Label>
                 <Input
                   type="url"
                   value={form.official_url ?? ""}
@@ -311,7 +300,7 @@ function AdminPage() {
                 />
               </div>
               <div className="space-y-1.5">
-                <Label>विवरण</Label>
+                <Label>छोटा विवरण</Label>
                 <Textarea
                   rows={3}
                   value={form.description}
@@ -322,8 +311,9 @@ function AdminPage() {
                 <Switch
                   checked={form.is_published}
                   onCheckedChange={(v) => setForm({ ...form, is_published: v })}
+                  id="pub"
                 />
-                <Label>Published</Label>
+                <Label htmlFor="pub">साइट पर दिखाएँ</Label>
               </div>
               <div className="flex gap-2">
                 <Button type="submit" disabled={saving}>
