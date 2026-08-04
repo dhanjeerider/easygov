@@ -1,0 +1,15 @@
+export function SiteFooter() {
+  return (
+    <footer className="mx-auto max-w-6xl px-4 pb-10 pt-16">
+      <div className="glass-card px-6 py-6 text-center">
+        <p className="text-sm text-muted-foreground">
+          सभी लिंक संबंधित सरकारी विभागों की आधिकारिक वेबसाइटों के हैं। यह एक निजी सूचना पोर्टल है,
+          किसी सरकारी संस्था से संबद्ध नहीं है।
+        </p>
+        <p className="mt-2 text-xs text-muted-foreground">
+          © {new Date().getFullYear()} Sarkari Setu
+        </p>
+      </div>
+    </footer>
+  );
+}
