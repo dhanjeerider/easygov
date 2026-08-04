@@ -35,7 +35,7 @@ export const Route = createFileRoute("/")({
 });
 
 const SPAN = [
-  "md:col-span-4 md:row-span-2",
+  "md:col-span-4",
   "md:col-span-2",
   "md:col-span-2",
   "md:col-span-3",
