@@ -248,7 +248,10 @@ function SchemesTab() {
       ? await supabase.from("schemes").update(payload).eq("id", selected)
       : await supabase.from("schemes").insert(payload);
     setSaving(false);
-    if (res.error) return toast.error(res.error.message);
+    if (res.error) {
+      toast.error(res.error.message);
+      return;
+    }
     toast.success(selected ? "योजना अपडेट हुई" : "नई योजना जुड़ गई");
     reset();
     void load();
@@ -256,7 +259,10 @@ function SchemesTab() {
 
   const remove = async (id: string) => {
     const { error } = await supabase.from("schemes").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("योजना हटाई गई");
     if (selected === id) reset();
     void load();
@@ -269,14 +275,20 @@ function SchemesTab() {
       .insert({ scheme_id: selected, label: newLink.label, url: newLink.url, sort_order: links.length })
       .select("id, scheme_id, label, url, note")
       .single();
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     setLinks((prev) => [...prev, data as SchemeLink]);
     setNewLink({ label: "", url: "" });
   };
 
   const removeLink = async (id: string) => {
     const { error } = await supabase.from("scheme_links").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     setLinks((prev) => prev.filter((l) => l.id !== id));
   };
 
@@ -491,7 +503,10 @@ function JobsTab() {
       ? await supabase.from("jobs").update(payload).eq("id", selected)
       : await supabase.from("jobs").insert(payload);
     setSaving(false);
-    if (res.error) return toast.error(res.error.message);
+    if (res.error) {
+      toast.error(res.error.message);
+      return;
+    }
     toast.success(selected ? "भर्ती अपडेट हुई" : "नई भर्ती जुड़ गई");
     reset();
     void load();
@@ -499,7 +514,10 @@ function JobsTab() {
 
   const remove = async (id: string) => {
     const { error } = await supabase.from("jobs").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("भर्ती हटाई गई");
     if (selected === id) reset();
     void load();
@@ -667,7 +685,10 @@ function PagesTab() {
       ? await supabase.from("pages").update(payload).eq("id", selected)
       : await supabase.from("pages").insert(payload);
     setSaving(false);
-    if (res.error) return toast.error(res.error.message);
+    if (res.error) {
+      toast.error(res.error.message);
+      return;
+    }
     toast.success(selected ? "पेज अपडेट हुआ" : "नया पेज जुड़ गया");
     reset();
     void load();
@@ -675,7 +696,10 @@ function PagesTab() {
 
   const remove = async (id: string) => {
     const { error } = await supabase.from("pages").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("पेज हटाया गया");
     if (selected === id) reset();
     void load();
