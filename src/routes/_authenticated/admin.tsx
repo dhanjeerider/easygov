@@ -34,12 +34,12 @@ type Scheme = {
   slug: string;
   title_hi: string;
   title_en: string;
-  description: string | null;
+  description: string;
   icon: string;
   category: string;
   official_url: string | null;
   is_published: boolean;
-  sort_order: number | null;
+  sort_order: number;
 };
 
 type SchemeLink = { id: string; scheme_id: string; label: string; url: string; note: string | null };
@@ -109,7 +109,7 @@ function AdminPage() {
     const payload = {
       ...form,
       slug: form.slug.trim().toLowerCase().replace(/\s+/g, "-"),
-      description: form.description || null,
+      description: form.description,
       official_url: form.official_url || null,
     };
     const res = selected
@@ -127,7 +127,10 @@ function AdminPage() {
 
   const removeScheme = async (id: string) => {
     const { error } = await supabase.from("schemes").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("योजना हटाई गई");
     if (selected === id) reset();
     void load();
@@ -140,14 +143,20 @@ function AdminPage() {
       .insert({ scheme_id: selected, label: newLink.label, url: newLink.url, sort_order: links.length })
       .select("id, scheme_id, label, url, note")
       .single();
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     setLinks((prev) => [...prev, data as SchemeLink]);
     setNewLink({ label: "", url: "" });
   };
 
   const removeLink = async (id: string) => {
     const { error } = await supabase.from("scheme_links").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     setLinks((prev) => prev.filter((l) => l.id !== id));
   };
 
@@ -288,7 +297,7 @@ function AdminPage() {
                   <Label>Sort order</Label>
                   <Input
                     type="number"
-                    value={form.sort_order ?? 100}
+                    value={form.sort_order}
                     onChange={(e) => setForm({ ...form, sort_order: Number(e.target.value) })}
                   />
                 </div>
@@ -305,7 +314,7 @@ function AdminPage() {
                 <Label>विवरण</Label>
                 <Textarea
                   rows={3}
-                  value={form.description ?? ""}
+                  value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                 />
               </div>

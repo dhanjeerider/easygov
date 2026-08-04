@@ -18,7 +18,21 @@ function publicClient() {
   });
 }
 
-export const listSchemes = createServerFn({ method: "GET" }).handler(async () => {
+export type SchemeSummary = {
+  id: string;
+  slug: string;
+  title_hi: string;
+  title_en: string;
+  description: string;
+  icon: string;
+  category: string;
+  official_url: string | null;
+  link_count: number;
+};
+
+export type SchemeLinkRow = { id: string; label: string; url: string; note: string | null };
+
+export const listSchemes = createServerFn({ method: "GET" }).handler(async (): Promise<SchemeSummary[]> => {
   const supabase = publicClient();
   const [{ data: schemes }, { data: links }] = await Promise.all([
     supabase
@@ -35,7 +49,7 @@ export const listSchemes = createServerFn({ method: "GET" }).handler(async () =>
 
 export const getScheme = createServerFn({ method: "GET" })
   .inputValidator((data: { slug: string }) => data)
-  .handler(async ({ data }) => {
+  .handler(async ({ data }): Promise<{ scheme: Omit<SchemeSummary, "link_count">; links: SchemeLinkRow[] } | null> => {
     const supabase = publicClient();
     const { data: scheme } = await supabase
       .from("schemes")
