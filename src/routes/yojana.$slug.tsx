@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
-import { getScheme } from "@/lib/schemes.functions";
+import { getScheme, type SchemeLinkRow } from "@/lib/schemes.functions";
 import { SchemeIcon } from "@/lib/icon-map";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -37,7 +37,10 @@ export const Route = createFileRoute("/yojana/$slug")({
 });
 
 function SchemePage() {
-  const { scheme, links } = Route.useLoaderData();
+  const { scheme, links } = Route.useLoaderData() as {
+    scheme: { slug: string; title_hi: string; title_en: string; description: string; icon: string; category: string; official_url: string | null };
+    links: SchemeLinkRow[];
+  };
 
   return (
     <div className="min-h-screen">

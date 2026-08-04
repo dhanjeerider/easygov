@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArrowRight, Link2, Search, ShieldCheck, Sparkles, Zap } from "lucide-react";
-import { listSchemes } from "@/lib/schemes.functions";
+import { listSchemes, type SchemeSummary } from "@/lib/schemes.functions";
 import { SchemeIcon } from "@/lib/icon-map";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -46,7 +46,7 @@ const SPAN = [
 ];
 
 function Index() {
-  const schemes = Route.useLoaderData();
+  const schemes = Route.useLoaderData() as SchemeSummary[];
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
