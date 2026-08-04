@@ -16,10 +16,10 @@ export const Route = createFileRoute("/")({
         content:
           "आधार, पैन, राशन कार्ड, PM Kisan, आयुष्मान, ई-श्रम, भू-नक्शा और PF जैसी सरकारी सेवाओं के 150+ आधिकारिक लिंक एक ही जगह।",
       },
-      { property: "og:title", content: "Sarkari Setu — सरकारी योजना व लिंक डायरेक्टरी" },
+      { property: "og:title", content: "Sarkari Setu — सरकारी योजना और ऑफिशियल लिंक डायरेक्टरी" },
       {
         property: "og:description",
-        content: "हर सरकारी योजना का ऑफिशियल लिंक — सत्यापित, व्यवस्थित और तेज़।",
+        content: "आधार, पैन, राशन कार्ड, PM Kisan, आयुष्मान, ई-श्रम, भू-नक्शा और PF जैसी सरकारी सेवाओं के 150+ आधिकारिक लिंक एक ही जगह।",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

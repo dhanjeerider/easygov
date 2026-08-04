@@ -78,17 +78,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sarkari Setu — सरकारी योजना व ऑफिशियल लिंक" },
+      { title: "Sarkari Setu — सरकारी योजना और ऑफिशियल लिंक डायरेक्टरी" },
       {
         name: "description",
-        content: "सरकारी योजनाओं और सेवाओं के आधिकारिक लिंक एक ही जगह।",
+        content: "आधार, पैन, राशन कार्ड, PM Kisan, आयुष्मान, ई-श्रम, भू-नक्शा और PF जैसी सरकारी सेवाओं के 150+ आधिकारिक लिंक एक ही जगह।",
       },
       { name: "author", content: "Sarkari Setu" },
-      { property: "og:title", content: "Sarkari Setu" },
-      { property: "og:description", content: "सरकारी योजनाओं के आधिकारिक लिंक एक ही जगह।" },
+      { property: "og:title", content: "Sarkari Setu — सरकारी योजना और ऑफिशियल लिंक डायरेक्टरी" },
+      { property: "og:description", content: "आधार, पैन, राशन कार्ड, PM Kisan, आयुष्मान, ई-श्रम, भू-नक्शा और PF जैसी सरकारी सेवाओं के 150+ आधिकारिक लिंक एक ही जगह।" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Sarkari Setu — सरकारी योजना और ऑफिशियल लिंक डायरेक्टरी" },
+      { name: "twitter:description", content: "आधार, पैन, राशन कार्ड, PM Kisan, आयुष्मान, ई-श्रम, भू-नक्शा और PF जैसी सरकारी सेवाओं के 150+ आधिकारिक लिंक एक ही जगह।" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/69de7658-adac-4a8f-b174-0725b6899864" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/69de7658-adac-4a8f-b174-0725b6899864" },
     ],
     links: [
       {
