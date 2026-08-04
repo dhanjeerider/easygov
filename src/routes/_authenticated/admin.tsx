@@ -173,7 +173,7 @@ function AdminPage() {
     return (
       <div className="min-h-screen">
         <SiteHeader />
-        <div className="glass-card mx-auto mt-20 max-w-md p-8 text-center">
+        <div className="panel mx-auto mt-20 max-w-md p-8 text-center">
           <h1 className="text-xl font-bold">Access denied</h1>
           <p className="mt-2 text-sm text-muted-foreground">
             आपके खाते के पास admin अधिकार नहीं हैं।
@@ -192,7 +192,7 @@ function AdminPage() {
       <main className="mx-auto max-w-6xl px-4 py-10">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-extrabold tracking-tight">Admin Panel</h1>
+            <h1 className="text-xl font-semibold tracking-tight">Admin Panel</h1>
             <p className="text-sm text-muted-foreground">योजनाएँ और लिंक मैनेज करें</p>
           </div>
           <div className="flex gap-2">
@@ -206,7 +206,7 @@ function AdminPage() {
         </div>
 
         <div className="grid gap-5 lg:grid-cols-[1fr_1.15fr]">
-          <section className="glass-card max-h-[70vh] overflow-y-auto p-4">
+          <section className="panel max-h-[70vh] overflow-y-auto p-4">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
               सभी योजनाएँ ({schemes.length})
             </h2>
@@ -214,8 +214,8 @@ function AdminPage() {
               {schemes.map((s) => (
                 <li
                   key={s.id}
-                  className={`flex items-center gap-3 rounded-xl border p-3 transition-colors ${
-                    selected === s.id ? "border-primary bg-primary/5" : "border-border bg-white/40"
+                  className={`flex items-center gap-3 rounded-md border p-3 transition-colors ${
+                    selected === s.id ? "border-primary bg-surface" : "border-border bg-card"
                   }`}
                 >
                   <button
@@ -223,7 +223,7 @@ function AdminPage() {
                     onClick={() => pick(s)}
                     className="flex min-w-0 flex-1 items-center gap-3 text-left"
                   >
-                    <span className="gradient-accent flex size-9 shrink-0 items-center justify-center rounded-xl text-accent-foreground">
+                    <span className="tint-chip flex size-9 shrink-0 items-center justify-center rounded-md">
                       <SchemeIcon name={s.icon} className="size-4" />
                     </span>
                     <span className="min-w-0">
@@ -242,7 +242,7 @@ function AdminPage() {
           </section>
 
           <section className="space-y-5">
-            <form onSubmit={saveScheme} className="glass-card space-y-4 p-5">
+            <form onSubmit={saveScheme} className="panel space-y-4 p-5">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                 {selected ? "योजना संपादित करें" : "नई योजना जोड़ें"}
               </h2>
@@ -338,7 +338,7 @@ function AdminPage() {
             </form>
 
             {selected && (
-              <div className="glass-card space-y-3 p-5">
+              <div className="panel space-y-3 p-5">
                 <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                   लिंक ({links.length})
                 </h2>
@@ -346,7 +346,7 @@ function AdminPage() {
                   {links.map((l) => (
                     <li
                       key={l.id}
-                      className="flex items-center gap-3 rounded-xl border border-border bg-white/40 p-3"
+                      className="flex items-center gap-3 rounded-md border border-border bg-surface p-3"
                     >
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-medium">{l.label}</span>
