@@ -79,8 +79,8 @@ function AuthPage() {
     <div className="min-h-screen">
       <SiteHeader />
       <main className="mx-auto flex max-w-md flex-col px-4 py-16">
-        <div className="glass-card p-7">
-          <h1 className="text-2xl font-extrabold tracking-tight">
+        <div className="panel p-6">
+          <h1 className="text-xl font-semibold tracking-tight">
             {mode === "signin" ? "Admin Login" : "Create account"}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
