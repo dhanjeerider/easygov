@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
-import { ImagePlus, Loader2, X } from "lucide-react";
+import { ImagePlus, Link2, Loader2, X } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { imageSrc } from "@/lib/icon-map";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function ImageUpload({
   value,
@@ -16,7 +17,20 @@ export function ImageUpload({
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
+  const [url, setUrl] = useState("");
   const src = imageSrc(value);
+
+  const applyUrl = () => {
+    const trimmed = url.trim();
+    if (!trimmed) return;
+    if (!/^https?:\/\/\S+$/i.test(trimmed)) {
+      toast.error("सही इमेज लिंक डालें (https:// से शुरू)");
+      return;
+    }
+    onChange(trimmed);
+    setUrl("");
+    toast.success("इमेज लिंक जुड़ गया");
+  };
 
   const upload = async (file: File) => {
     if (file.size > 3 * 1024 * 1024) {
@@ -74,8 +88,26 @@ export function ImageUpload({
           </Button>
         )}
       </div>
+      <div className="flex items-center gap-2">
+        <Input
+          type="url"
+          inputMode="url"
+          placeholder="या इमेज लिंक पेस्ट करें (https://...)"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              applyUrl();
+            }
+          }}
+        />
+        <Button type="button" variant="outline" onClick={applyUrl}>
+          <Link2 className="size-4" /> जोड़ें
+        </Button>
+      </div>
       <p className="text-xs text-muted-foreground">
-        इमेज न डालने पर नीचे चुना गया आइकॉन दिखेगा।
+        अपलोड करें या सीधे इमेज URL डालें। इमेज न डालने पर नीचे चुना गया आइकॉन दिखेगा।
       </p>
     </div>
   );
