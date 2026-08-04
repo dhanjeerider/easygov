@@ -13,7 +13,18 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as NaukriIndexRouteImport } from './routes/naukri.index'
+import { Route as NaukriSlugRouteImport } from './routes/naukri.$slug'
+import { Route as PageSlugRouteImport } from './routes/page.$slug'
+import { Route as ToolsIndexRouteImport } from './routes/tools/index'
+import { Route as ToolsAgeCalculatorRouteImport } from './routes/tools/age-calculator'
+import { Route as ToolsEmiCalculatorRouteImport } from './routes/tools/emi-calculator'
+import { Route as ToolsListBuilderRouteImport } from './routes/tools/list-builder'
+import { Route as ToolsMyDetailsRouteImport } from './routes/tools/my-details'
+import { Route as ToolsSalaryTrackerRouteImport } from './routes/tools/salary-tracker'
+import { Route as ToolsWorkLogRouteImport } from './routes/tools/work-log'
 import { Route as YojanaSlugRouteImport } from './routes/yojana.$slug'
+import { Route as ApiPublicImgSplatRouteImport } from './routes/api/public/img.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,9 +45,64 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const NaukriIndexRoute = NaukriIndexRouteImport.update({
+  id: '/naukri/',
+  path: '/naukri/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NaukriSlugRoute = NaukriSlugRouteImport.update({
+  id: '/naukri/$slug',
+  path: '/naukri/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PageSlugRoute = PageSlugRouteImport.update({
+  id: '/page/$slug',
+  path: '/page/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsIndexRoute = ToolsIndexRouteImport.update({
+  id: '/tools/',
+  path: '/tools/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsAgeCalculatorRoute = ToolsAgeCalculatorRouteImport.update({
+  id: '/tools/age-calculator',
+  path: '/tools/age-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsEmiCalculatorRoute = ToolsEmiCalculatorRouteImport.update({
+  id: '/tools/emi-calculator',
+  path: '/tools/emi-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsListBuilderRoute = ToolsListBuilderRouteImport.update({
+  id: '/tools/list-builder',
+  path: '/tools/list-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsMyDetailsRoute = ToolsMyDetailsRouteImport.update({
+  id: '/tools/my-details',
+  path: '/tools/my-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsSalaryTrackerRoute = ToolsSalaryTrackerRouteImport.update({
+  id: '/tools/salary-tracker',
+  path: '/tools/salary-tracker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsWorkLogRoute = ToolsWorkLogRouteImport.update({
+  id: '/tools/work-log',
+  path: '/tools/work-log',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const YojanaSlugRoute = YojanaSlugRouteImport.update({
   id: '/yojana/$slug',
   path: '/yojana/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicImgSplatRoute = ApiPublicImgSplatRouteImport.update({
+  id: '/api/public/img/$',
+  path: '/api/public/img/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -44,13 +110,35 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/naukri/$slug': typeof NaukriSlugRoute
+  '/page/$slug': typeof PageSlugRoute
+  '/tools/age-calculator': typeof ToolsAgeCalculatorRoute
+  '/tools/emi-calculator': typeof ToolsEmiCalculatorRoute
+  '/tools/list-builder': typeof ToolsListBuilderRoute
+  '/tools/my-details': typeof ToolsMyDetailsRoute
+  '/tools/salary-tracker': typeof ToolsSalaryTrackerRoute
+  '/tools/work-log': typeof ToolsWorkLogRoute
   '/yojana/$slug': typeof YojanaSlugRoute
+  '/naukri/': typeof NaukriIndexRoute
+  '/tools/': typeof ToolsIndexRoute
+  '/api/public/img/$': typeof ApiPublicImgSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/naukri/$slug': typeof NaukriSlugRoute
+  '/page/$slug': typeof PageSlugRoute
+  '/tools/age-calculator': typeof ToolsAgeCalculatorRoute
+  '/tools/emi-calculator': typeof ToolsEmiCalculatorRoute
+  '/tools/list-builder': typeof ToolsListBuilderRoute
+  '/tools/my-details': typeof ToolsMyDetailsRoute
+  '/tools/salary-tracker': typeof ToolsSalaryTrackerRoute
+  '/tools/work-log': typeof ToolsWorkLogRoute
   '/yojana/$slug': typeof YojanaSlugRoute
+  '/naukri': typeof NaukriIndexRoute
+  '/tools': typeof ToolsIndexRoute
+  '/api/public/img/$': typeof ApiPublicImgSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -58,27 +146,90 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/naukri/$slug': typeof NaukriSlugRoute
+  '/page/$slug': typeof PageSlugRoute
+  '/tools/age-calculator': typeof ToolsAgeCalculatorRoute
+  '/tools/emi-calculator': typeof ToolsEmiCalculatorRoute
+  '/tools/list-builder': typeof ToolsListBuilderRoute
+  '/tools/my-details': typeof ToolsMyDetailsRoute
+  '/tools/salary-tracker': typeof ToolsSalaryTrackerRoute
+  '/tools/work-log': typeof ToolsWorkLogRoute
   '/yojana/$slug': typeof YojanaSlugRoute
+  '/naukri/': typeof NaukriIndexRoute
+  '/tools/': typeof ToolsIndexRoute
+  '/api/public/img/$': typeof ApiPublicImgSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/admin' | '/yojana/$slug'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/admin'
+    | '/naukri/$slug'
+    | '/page/$slug'
+    | '/tools/age-calculator'
+    | '/tools/emi-calculator'
+    | '/tools/list-builder'
+    | '/tools/my-details'
+    | '/tools/salary-tracker'
+    | '/tools/work-log'
+    | '/yojana/$slug'
+    | '/naukri/'
+    | '/tools/'
+    | '/api/public/img/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/admin' | '/yojana/$slug'
+  to:
+    | '/'
+    | '/auth'
+    | '/admin'
+    | '/naukri/$slug'
+    | '/page/$slug'
+    | '/tools/age-calculator'
+    | '/tools/emi-calculator'
+    | '/tools/list-builder'
+    | '/tools/my-details'
+    | '/tools/salary-tracker'
+    | '/tools/work-log'
+    | '/yojana/$slug'
+    | '/naukri'
+    | '/tools'
+    | '/api/public/img/$'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/admin'
+    | '/naukri/$slug'
+    | '/page/$slug'
+    | '/tools/age-calculator'
+    | '/tools/emi-calculator'
+    | '/tools/list-builder'
+    | '/tools/my-details'
+    | '/tools/salary-tracker'
+    | '/tools/work-log'
     | '/yojana/$slug'
+    | '/naukri/'
+    | '/tools/'
+    | '/api/public/img/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
+  NaukriSlugRoute: typeof NaukriSlugRoute
+  PageSlugRoute: typeof PageSlugRoute
+  ToolsAgeCalculatorRoute: typeof ToolsAgeCalculatorRoute
+  ToolsEmiCalculatorRoute: typeof ToolsEmiCalculatorRoute
+  ToolsListBuilderRoute: typeof ToolsListBuilderRoute
+  ToolsMyDetailsRoute: typeof ToolsMyDetailsRoute
+  ToolsSalaryTrackerRoute: typeof ToolsSalaryTrackerRoute
+  ToolsWorkLogRoute: typeof ToolsWorkLogRoute
   YojanaSlugRoute: typeof YojanaSlugRoute
+  NaukriIndexRoute: typeof NaukriIndexRoute
+  ToolsIndexRoute: typeof ToolsIndexRoute
+  ApiPublicImgSplatRoute: typeof ApiPublicImgSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -111,11 +262,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/naukri/': {
+      id: '/naukri/'
+      path: '/naukri'
+      fullPath: '/naukri/'
+      preLoaderRoute: typeof NaukriIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/naukri/$slug': {
+      id: '/naukri/$slug'
+      path: '/naukri/$slug'
+      fullPath: '/naukri/$slug'
+      preLoaderRoute: typeof NaukriSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/page/$slug': {
+      id: '/page/$slug'
+      path: '/page/$slug'
+      fullPath: '/page/$slug'
+      preLoaderRoute: typeof PageSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/': {
+      id: '/tools/'
+      path: '/tools'
+      fullPath: '/tools/'
+      preLoaderRoute: typeof ToolsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/age-calculator': {
+      id: '/tools/age-calculator'
+      path: '/tools/age-calculator'
+      fullPath: '/tools/age-calculator'
+      preLoaderRoute: typeof ToolsAgeCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/emi-calculator': {
+      id: '/tools/emi-calculator'
+      path: '/tools/emi-calculator'
+      fullPath: '/tools/emi-calculator'
+      preLoaderRoute: typeof ToolsEmiCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/list-builder': {
+      id: '/tools/list-builder'
+      path: '/tools/list-builder'
+      fullPath: '/tools/list-builder'
+      preLoaderRoute: typeof ToolsListBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/my-details': {
+      id: '/tools/my-details'
+      path: '/tools/my-details'
+      fullPath: '/tools/my-details'
+      preLoaderRoute: typeof ToolsMyDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/salary-tracker': {
+      id: '/tools/salary-tracker'
+      path: '/tools/salary-tracker'
+      fullPath: '/tools/salary-tracker'
+      preLoaderRoute: typeof ToolsSalaryTrackerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/work-log': {
+      id: '/tools/work-log'
+      path: '/tools/work-log'
+      fullPath: '/tools/work-log'
+      preLoaderRoute: typeof ToolsWorkLogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/yojana/$slug': {
       id: '/yojana/$slug'
       path: '/yojana/$slug'
       fullPath: '/yojana/$slug'
       preLoaderRoute: typeof YojanaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/img/$': {
+      id: '/api/public/img/$'
+      path: '/api/public/img/$'
+      fullPath: '/api/public/img/$'
+      preLoaderRoute: typeof ApiPublicImgSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -136,7 +364,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
+  NaukriSlugRoute: NaukriSlugRoute,
+  PageSlugRoute: PageSlugRoute,
+  ToolsAgeCalculatorRoute: ToolsAgeCalculatorRoute,
+  ToolsEmiCalculatorRoute: ToolsEmiCalculatorRoute,
+  ToolsListBuilderRoute: ToolsListBuilderRoute,
+  ToolsMyDetailsRoute: ToolsMyDetailsRoute,
+  ToolsSalaryTrackerRoute: ToolsSalaryTrackerRoute,
+  ToolsWorkLogRoute: ToolsWorkLogRoute,
   YojanaSlugRoute: YojanaSlugRoute,
+  NaukriIndexRoute: NaukriIndexRoute,
+  ToolsIndexRoute: ToolsIndexRoute,
+  ApiPublicImgSplatRoute: ApiPublicImgSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

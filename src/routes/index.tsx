@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ChevronRight, Search } from "lucide-react";
+import { BriefcaseBusiness, ChevronRight, Search, Wrench } from "lucide-react";
 import { listSchemes, type SchemeSummary } from "@/lib/schemes.functions";
-import { SchemeIcon } from "@/lib/icon-map";
+import { SchemeAvatar } from "@/lib/icon-map";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Input } from "@/components/ui/input";
@@ -73,6 +73,21 @@ function Index() {
               className="border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
             />
           </div>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link
+              to="/naukri"
+              className="tint-2 panel flex items-center gap-2 px-3 py-2 text-sm hover:bg-surface"
+            >
+              <BriefcaseBusiness className="size-4 text-primary" /> सरकारी नौकरी
+            </Link>
+            <Link
+              to="/tools"
+              className="tint-3 panel flex items-center gap-2 px-3 py-2 text-sm hover:bg-surface"
+            >
+              <Wrench className="size-4 text-primary" /> फ्री टूल्स
+            </Link>
+          </div>
         </section>
 
         <section className="grid gap-3 py-7 sm:grid-cols-2 lg:grid-cols-3">
@@ -83,9 +98,7 @@ function Index() {
               params={{ slug: scheme.slug }}
               className={`${TINTS[i % TINTS.length]} panel group flex items-start gap-3 p-3.5 transition-colors hover:bg-surface`}
             >
-              <span className="tint-chip flex size-9 shrink-0 items-center justify-center rounded-md">
-                <SchemeIcon name={scheme.icon} className="size-4.5" />
-              </span>
+              <SchemeAvatar icon={scheme.icon} image={scheme.image_url} alt={scheme.title_hi} />
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-semibold">{scheme.title_hi}</span>
                 <span className="mt-0.5 block truncate text-xs text-muted-foreground">

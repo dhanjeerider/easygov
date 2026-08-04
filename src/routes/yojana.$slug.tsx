@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
 import { getScheme, type SchemeLinkRow } from "@/lib/schemes.functions";
-import { SchemeIcon } from "@/lib/icon-map";
+import { SchemeAvatar } from "@/lib/icon-map";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Button } from "@/components/ui/button";
@@ -46,6 +46,7 @@ function SchemePage() {
       icon: string;
       category: string;
       official_url: string | null;
+      image_url: string | null;
     };
     links: SchemeLinkRow[];
   };
@@ -62,9 +63,13 @@ function SchemePage() {
         </Link>
 
         <section className="mt-4 flex flex-wrap items-start gap-3 border-b border-border pb-6">
-          <span className="tint-chip flex size-11 items-center justify-center rounded-md">
-            <SchemeIcon name={scheme.icon} className="size-5" />
-          </span>
+          <SchemeAvatar
+            icon={scheme.icon}
+            image={scheme.image_url}
+            alt={scheme.title_hi}
+            className="size-11"
+            iconClassName="size-5"
+          />
           <div className="min-w-0 flex-1">
             <p className="text-xs uppercase tracking-wide text-muted-foreground">{scheme.category}</p>
             <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">{scheme.title_hi}</h1>
