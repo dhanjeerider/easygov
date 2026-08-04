@@ -27,6 +27,7 @@ export type SchemeSummary = {
   icon: string;
   category: string;
   official_url: string | null;
+  image_url: string | null;
   link_count: number;
 };
 
@@ -37,7 +38,7 @@ export const listSchemes = createServerFn({ method: "GET" }).handler(async (): P
   const [{ data: schemes }, { data: links }] = await Promise.all([
     supabase
       .from("schemes")
-      .select("id, slug, title_hi, title_en, description, icon, category, official_url")
+      .select("id, slug, title_hi, title_en, description, icon, category, official_url, image_url")
       .eq("is_published", true)
       .order("sort_order"),
     supabase.from("scheme_links").select("scheme_id"),
@@ -53,7 +54,7 @@ export const getScheme = createServerFn({ method: "GET" })
     const supabase = publicClient();
     const { data: scheme } = await supabase
       .from("schemes")
-      .select("id, slug, title_hi, title_en, description, icon, category, official_url")
+      .select("id, slug, title_hi, title_en, description, icon, category, official_url, image_url")
       .eq("slug", data.slug)
       .eq("is_published", true)
       .maybeSingle();

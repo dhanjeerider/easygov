@@ -14,6 +14,111 @@ export type Database = {
   }
   public: {
     Tables: {
+      jobs: {
+        Row: {
+          age_limit: string
+          apply_url: string | null
+          category: string
+          created_at: string
+          department: string
+          description: string
+          fee: string
+          id: string
+          image_url: string | null
+          is_published: boolean
+          last_date: string | null
+          location: string
+          notification_url: string | null
+          qualification: string
+          slug: string
+          sort_order: number
+          title_en: string
+          title_hi: string
+          total_posts: string
+          updated_at: string
+        }
+        Insert: {
+          age_limit?: string
+          apply_url?: string | null
+          category?: string
+          created_at?: string
+          department?: string
+          description?: string
+          fee?: string
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          last_date?: string | null
+          location?: string
+          notification_url?: string | null
+          qualification?: string
+          slug: string
+          sort_order?: number
+          title_en?: string
+          title_hi: string
+          total_posts?: string
+          updated_at?: string
+        }
+        Update: {
+          age_limit?: string
+          apply_url?: string | null
+          category?: string
+          created_at?: string
+          department?: string
+          description?: string
+          fee?: string
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          last_date?: string | null
+          location?: string
+          notification_url?: string | null
+          qualification?: string
+          slug?: string
+          sort_order?: number
+          title_en?: string
+          title_hi?: string
+          total_posts?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          is_published: boolean
+          show_in_menu: boolean
+          slug: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content?: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          show_in_menu?: boolean
+          slug: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          show_in_menu?: boolean
+          slug?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       scheme_links: {
         Row: {
           created_at: string
@@ -59,6 +164,7 @@ export type Database = {
           description: string
           icon: string
           id: string
+          image_url: string | null
           is_published: boolean
           official_url: string | null
           slug: string
@@ -73,6 +179,7 @@ export type Database = {
           description?: string
           icon?: string
           id?: string
+          image_url?: string | null
           is_published?: boolean
           official_url?: string | null
           slug: string
@@ -87,6 +194,7 @@ export type Database = {
           description?: string
           icon?: string
           id?: string
+          image_url?: string | null
           is_published?: boolean
           official_url?: string | null
           slug?: string
